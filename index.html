@@ -622,9 +622,91 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+  <link rel="preload" as="image" href="nadeem-logo-4k.png">
 </head>
 <body>
+<!-- 4K Preloader with Pulse Animation Start -->
+<div id="preloader">
+  <div class="loader-wrap">
+    <img src="nadeem-logo-4k.png" alt="Nadeem Speaks Astrologer" class="pulse-logo">
+    <p class="loading-text">NADEEM SPEAKS</p>
+  </div>
+</div>
 
+<style>
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #0B0E11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.loader-wrap {
+  text-align: center;
+}
+
+.pulse-logo {
+  width: 280px;
+  height: auto;
+  animation: pulseGlow 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(200, 169, 77, 0.4));
+}
+
+.loading-text {
+  color: #C8A94D;
+  font-size: 16px;
+  letter-spacing: 4px;
+  margin-top: 30px;
+  font-weight: 600;
+  animation: textBlink 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: drop-shadow(0 0 15px rgba(200, 169, 77, 0.4));
+  }
+  50% { 
+    transform: scale(1.08); 
+    filter: drop-shadow(0 0 30px rgba(200, 169, 77, 0.8));
+  }
+}
+
+@keyframes textBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .pulse-logo { width: 200px; }
+  .loading-text { font-size: 14px; letter-spacing: 3px; }
+}
+</style>
+
+<script>
+window.addEventListener('load', function() {
+  // 1.5 sec baad hide ho jaye smooth
+  setTimeout(function(){
+    document.getElementById('preloader').classList.add('fade-out');
+  }, 1500);
+  
+  // 2 sec baad DOM se remove kar do
+  setTimeout(function(){
+    document.getElementById('preloader').remove();
+  }, 2100);
+});
+</script>
+<!-- 4K Preloader with Pulse Animation End -->
 <!-- Ambient background: stars + nebula glow, sits behind everything -->
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div class="nebula-glow nebula-glow--a" aria-hidden="true"></div>
